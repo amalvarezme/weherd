@@ -3,7 +3,8 @@
 The local bridge uses Herdr's Unix socket NDJSON API for `session.snapshot`,
 `tab.create`, `pane.close`, and `workspace.close`. The installed
 `herdr api schema --json` (Herdr 0.8.2, protocol 20) was the implementation
-authority. Snapshot protocols 19 and 20 are accepted; unsupported protocols
+authority. Snapshot protocols 19, 20, and 22 are accepted (protocol 22 checked against
+Herdr 0.9.3: same snapshot fields and terminal frame shape); unsupported protocols
 report disconnected without creating demo agents.
 
 Interactive terminal streams use the supported `herdr terminal session control`

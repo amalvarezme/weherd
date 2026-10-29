@@ -11,7 +11,7 @@ A Three.js office you can walk through, populated by the coding agents in your l
 
 ## Run
 
-Requires Node.js 22 or newer. Live mode also needs a running Herdr session and `herdr` on your `PATH`. The terminal bridge has been verified against Herdr 0.8.2, socket protocol 20.
+Requires Node.js 22 or newer. Live mode also needs a running Herdr session and `herdr` on your `PATH`. The terminal bridge has been verified against Herdr 0.8.2 (socket protocol 20); Herdr 0.9.3 (protocol 22) is also accepted.
 
 ```sh
 npm install

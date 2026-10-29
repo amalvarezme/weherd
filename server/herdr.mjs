@@ -32,8 +32,8 @@ export function agentIdentity(agent) {
 }
 
 export function normalizeSnapshot(snapshot) {
-  if (![19, 20].includes(snapshot?.protocol) || !Array.isArray(snapshot.agents) || !Array.isArray(snapshot.panes) || !Array.isArray(snapshot.workspaces)) {
-    throw new ApiError('Unsupported Herdr snapshot. This bridge supports socket protocols 19 and 20.', 503);
+  if (![19, 20, 22].includes(snapshot?.protocol) || !Array.isArray(snapshot.agents) || !Array.isArray(snapshot.panes) || !Array.isArray(snapshot.workspaces)) {
+    throw new ApiError('Unsupported Herdr snapshot. This bridge supports socket protocols 19, 20, and 22.', 503);
   }
   const workspaces = new Map(snapshot.workspaces.map(workspace => [workspace.workspace_id, workspace]));
   const panes = new Map(snapshot.panes.map(pane => [pane.pane_id, pane]));

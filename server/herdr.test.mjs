@@ -24,10 +24,19 @@ test('normalization preserves named agents, maps lifecycle states, excludes plai
   assert.equal(normalizeSnapshot(snapshot)[2].status, 'working');
 });
 
+test('socket protocol 22 (Herdr 0.9.3) snapshots are accepted', () => {
+  const snapshot = createDemoSnapshot();
+  const expected = normalizeSnapshot(snapshot);
+  snapshot.protocol = 22;
+  assert.deepEqual(normalizeSnapshot(snapshot), expected);
+});
+
 test('unsupported protocol and inconsistent pane identities fail closed', () => {
   const snapshot = createDemoSnapshot();
-  snapshot.protocol = 21;
-  assert.throws(() => normalizeSnapshot(snapshot), /Unsupported/);
+  for (const protocol of [18, 21, 23]) {
+    snapshot.protocol = protocol;
+    assert.throws(() => normalizeSnapshot(snapshot), /Unsupported/);
+  }
   snapshot.protocol = 20;
   snapshot.panes[0].terminal_id = 'replacement';
   assert.throws(() => normalizeSnapshot(snapshot), /inconsistent/);
